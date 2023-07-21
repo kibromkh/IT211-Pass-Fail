@@ -1,1 +1,65 @@
-
+<!-- HTML form -->
+<form id="myForm" onsubmit="return validateForm()">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
+    <br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  
+  <script>
+    // Function to validate passwords
+    function validatePassword(password) {
+      // Check for at least 8 characters
+      if (password.length < 8) {
+        return false;
+      }
+  
+      // Check for at least one uppercase letter
+      if (!/[A-Z]/.test(password)) {
+        return false;
+      }
+  
+      // Check for at least one lowercase letter
+      if (!/[a-z]/.test(password)) {
+        return false;
+      }
+  
+      return true;
+    }
+  
+    // Function to validate the entire form
+    function validateForm() {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const password = document.getElementById("password").value;
+  
+      // Check for missing first name
+      if (firstName.trim() === "") {
+        alert("Please enter your First Name.");
+        return false;
+      }
+  
+      // Check for missing last name
+      if (lastName.trim() === "") {
+        alert("Please enter your Last Name.");
+        return false;
+      }
+  
+      // Validate password using the validatePassword function
+      if (!validatePassword(password)) {
+        alert("Invalid password. Passwords should have at least 8 characters, at least one uppercase letter, and at least one lowercase letter.");
+        return false;
+      }
+  
+      // If all fields are valid, show success message and allow form submission
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+  
